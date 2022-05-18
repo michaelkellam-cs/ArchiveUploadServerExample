@@ -116,14 +116,20 @@ public class BuildScript
                         ms.Position = 0;
                         client.UploadFile(ms, string.Format("/home/{0}/Server.zip", user), true);
                     }
-                    Directory.Delete("BuildsForRemote");
                 } else {    
                     UnityEngine.Debug.LogError("Could not connect to server with the given environment credentials.");
                 }
             }
 
             File.Delete(path);
-
+            DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory() + "/BuildsForRemote");
+            FileInfo[] files = di.GetFiles();
+            DirectoryInfo[] subdirs = di.GetDirectories();
+            if (files.Length == 0 && subdirs.Length == 0) {
+                Directory.Delete("BuildsForRemote");
+            } else {
+                UnityEngine.Debug.LogWarning("Upload successful, however, could not delete /BuildsForRemote directory because it is not empty. Please manually delete if you want it deleted.");
+            }
             UnityEngine.Debug.Log("File successfully uploaded to server.");
             
         } catch (ArgumentException argEx) {
@@ -140,15 +146,15 @@ public class BuildScript
         }
     }
 
-    [MenuItem("Build/Retry Upload")]
-    public static void RetryUpload()
-    {
-        if (!File.Exists(Directory.GetCurrentDirectory() + "/BuildsForRemote/Server.zip")) {
-            UnityEngine.Debug.LogError("File does not exist in /BuildsForRemote/, cannot upload. Please build, archive, and upload instead.");
-            return;
-        }
-        UploadFile();
-    }
+    // [MenuItem("Build/Retry Upload")]
+    // public static void RetryUpload()
+    // {
+    //     if (!File.Exists(Directory.GetCurrentDirectory() + "/BuildsForRemote/Server.zip")) {
+    //         UnityEngine.Debug.LogError("File does not exist in /BuildsForRemote/, cannot upload. Please build, archive, and upload instead.");
+    //         return;
+    //     }
+    //     UploadFile();
+    // }
 
     [MenuItem("Build/Build Client (Windows)")]
     public static void BuildWindowsClient()
