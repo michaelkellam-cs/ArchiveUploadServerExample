@@ -1,0 +1,1 @@
+start cmd /k "cd Builds/Linux && %1winrar a -r Server.zip && move Server.zip ../../BuildsForRemote && exit"
