@@ -146,16 +146,6 @@ public class BuildScript
         }
     }
 
-    // [MenuItem("Build/Retry Upload")]
-    // public static void RetryUpload()
-    // {
-    //     if (!File.Exists(Directory.GetCurrentDirectory() + "/BuildsForRemote/Server.zip")) {
-    //         UnityEngine.Debug.LogError("File does not exist in /BuildsForRemote/, cannot upload. Please build, archive, and upload instead.");
-    //         return;
-    //     }
-    //     UploadFile();
-    // }
-
     [MenuItem("Build/Build Client (Windows)")]
     public static void BuildWindowsClient()
     {
