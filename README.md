@@ -1,7 +1,7 @@
 # ArchiveUploadServerExample
 This project showcases an automated build script that will build, archive, and upload a Server build to a Linux server remotely.
 
-[Medium Article](https://www.google.com)
+[Medium Article]([https://www.google.com](https://medium.com/@michaelkellam/uploading-mirror-server-builds-in-unity-easily-bd29b6fc4957))
 
 Rundown of script:
 1. Get directory of winrar.exe
